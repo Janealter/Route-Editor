@@ -1,0 +1,17 @@
+.list-element {
+  transition: border-color .10s ease-in-out;
+  &.list-element_highlighted {
+    border: 1px solid #b8daff;
+  }
+  .list-element__inner {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    .list-element__button {
+      margin-left: 30px;
+      padding-top: 0.2rem;
+      padding-bottom: 0.2rem;
+    }
+  }
+}
