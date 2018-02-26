@@ -1,0 +1,27 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TextField the snapshot and the rendered component are the same 1`] = `
+<input
+  className="form-control"
+  maxLength="30"
+  minLength="3"
+  name="testTextField"
+  onKeyDown={
+    [MockFunction] {
+      "calls": Array [
+        Array [
+          Object {
+            "keyCode": 13,
+            "target": Object {
+              "value": "testValue",
+            },
+          },
+        ],
+      ],
+    }
+  }
+  placeholder="testPlaceholder"
+  type="text"
+  value="testValue"
+/>
+`;

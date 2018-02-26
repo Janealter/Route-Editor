@@ -2,6 +2,7 @@ import React from 'react';
 import TextField from './index';
 import { shallow } from 'enzyme';
 import { KeyCode } from "../../lib/const";
+import toJson from "enzyme-to-json";
 
 describe("TextField", function() {
 
@@ -15,7 +16,6 @@ describe("TextField", function() {
                onKeyDown={onKeyDownSpy}
     />
   );
-  //console.log(renderedComponent.debug());
   const inputWrapper = renderedComponent.find('input');
 
   it('renders without crashing', () => {
@@ -31,5 +31,9 @@ describe("TextField", function() {
     const keyDownEventProps = {keyCode: KeyCode.ENTER, target: {value: 'testValue'}};
     inputWrapper.simulate('keydown', keyDownEventProps);
     expect(onKeyDownSpy).toBeCalledWith(keyDownEventProps);
+  });
+
+  it('the snapshot and the rendered component are the same', () => {
+    expect(toJson(renderedComponent)).toMatchSnapshot();
   });
 });

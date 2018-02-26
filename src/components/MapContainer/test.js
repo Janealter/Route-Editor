@@ -1,7 +1,8 @@
 import React from 'react';
 import { shallow } from 'enzyme';
+import toJson from 'enzyme-to-json';
 import MapContainer from "./index";
-import Waypoints from '../../waypoints.json';
+import waypoints from '../../waypoints.json';
 
 describe('MapContainer', function () {
   const mapInitialState = { center: [50, 50], zoom: 10 };
@@ -9,21 +10,15 @@ describe('MapContainer', function () {
   const onPlacemarkGeometryChangeSpy = jest.fn();
   const renderedComponent = shallow(
     <MapContainer mapInitialState={mapInitialState}
-                  waypoints={Waypoints}
+                  waypoints={waypoints}
                   onMapNodeCreate={onMapNodeCreateSpy}
                   onPlacemarkGeometryChange={onPlacemarkGeometryChangeSpy}
     />
   );
 
-  //console.log(renderedComponent.debug());
-
   it('renders self', () => {
     expect(renderedComponent.instance()).toBeInstanceOf(MapContainer);
   });
-
-  /*it('handlers are work fine', () => {
-    //expect(onMapNodeCreateSpy).toBeCalled();
-  });*/
 
   it('changes state when receiving changed props', () => {
     renderedComponent.setProps({mapInitialState: {center: [45, 45], zoom: 8}});
@@ -33,5 +28,9 @@ describe('MapContainer', function () {
   it('not changes state when receiving not changed props', () => {
     renderedComponent.setProps({mapInitialState: mapInitialState});
     expect(renderedComponent.state().mapInitialState).toEqual(mapInitialState);
+  });
+
+  it('the snapshot and the rendered component are the same', () => {
+    expect(toJson(renderedComponent)).toMatchSnapshot();
   });
 });

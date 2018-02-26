@@ -1,7 +1,7 @@
 import React from 'react';
-import {mount} from 'enzyme';
+import { mount } from 'enzyme';
 import ListElementClosable from './index';
-import {dispatchEvent, getCustomMouseEvent} from "../../../lib/custom-mouse-event";
+import { dispatchEvent, getCustomMouseEvent } from "../../../lib/custom-mouse-event";
 
 describe("ListElement", function() {
   const onMouseDownSpy = jest.fn();
@@ -18,7 +18,6 @@ describe("ListElement", function() {
     />
   );
   it('renders without crashing', () => {
-    //console.log(renderedComponent.debug());
     const liWrapper = renderedComponent.find('li');
     const buttonWrapper = renderedComponent.find('button');
     expect(renderedComponent.instance()).toBeInstanceOf(ListElementClosable);
@@ -52,8 +51,6 @@ describe("ListElement", function() {
     expect(onCloseButtonClickSpy).toBeCalled();
 
     expect(renderedComponent.find('li').hasClass('list-element_highlighted')).toBe(false);
-
-    //console.log(renderedComponent.debug());
   });
 });
 

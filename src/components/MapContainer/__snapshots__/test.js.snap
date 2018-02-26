@@ -1,0 +1,326 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MapContainer the snapshot and the rendered component are the same 1`] = `
+<div
+  className="card"
+>
+  <div
+    className="card-header"
+  >
+    Map
+  </div>
+  <div
+    className="card-body"
+  >
+    <div
+      className="card"
+    >
+      <YMaps
+        enterprise={false}
+        onApiAvaliable={[Function]}
+        version="2.1"
+      >
+        <ResponsiveMap
+          height={450}
+          instanceRef={[MockFunction]}
+          responsive={true}
+          state={
+            Object {
+              "center": Array [
+                50,
+                50,
+              ],
+              "zoom": 10,
+            }
+          }
+          width={400}
+        >
+          <Placemark
+            geometry={
+              Object {
+                "coordinates": Array [
+                  55.751678,
+                  37.573346,
+                ],
+              }
+            }
+            key="1"
+            onGeometryChange={[MockFunction]}
+            options={
+              Object {
+                "draggable": true,
+                "iconColor": "#007bff",
+                "iconImageOffset": Array [
+                  -3,
+                  -42,
+                ],
+                "iconImageSize": Array [
+                  34,
+                  40,
+                ],
+                "iconLayout": "islands#icon",
+                "zIndex": 1,
+              }
+            }
+            properties={
+              Object {
+                "balloonContent": "waypoint 1 very very very very very very large text here",
+                "waypointId": 1,
+              }
+            }
+          />
+          <Placemark
+            geometry={
+              Object {
+                "coordinates": Array [
+                  55.768237,
+                  37.5931097,
+                ],
+              }
+            }
+            key="2"
+            onGeometryChange={[MockFunction]}
+            options={
+              Object {
+                "draggable": true,
+                "iconColor": "#007bff",
+                "iconImageOffset": Array [
+                  -3,
+                  -42,
+                ],
+                "iconImageSize": Array [
+                  34,
+                  40,
+                ],
+                "iconLayout": "islands#icon",
+                "zIndex": 1,
+              }
+            }
+            properties={
+              Object {
+                "balloonContent": "waypoint 2",
+                "waypointId": 2,
+              }
+            }
+          />
+          <Placemark
+            geometry={
+              Object {
+                "coordinates": Array [
+                  55.770913456,
+                  37.5135454,
+                ],
+              }
+            }
+            key="3"
+            onGeometryChange={[MockFunction]}
+            options={
+              Object {
+                "draggable": true,
+                "iconColor": "#007bff",
+                "iconImageOffset": Array [
+                  -3,
+                  -42,
+                ],
+                "iconImageSize": Array [
+                  34,
+                  40,
+                ],
+                "iconLayout": "islands#icon",
+                "zIndex": 1,
+              }
+            }
+            properties={
+              Object {
+                "balloonContent": "waypoint 3 very large text here",
+                "waypointId": 3,
+              }
+            }
+          />
+          <Placemark
+            geometry={
+              Object {
+                "coordinates": Array [
+                  55.7811245,
+                  37.4930676,
+                ],
+              }
+            }
+            key="4"
+            onGeometryChange={[MockFunction]}
+            options={
+              Object {
+                "draggable": true,
+                "iconColor": "#007bff",
+                "iconImageOffset": Array [
+                  -3,
+                  -42,
+                ],
+                "iconImageSize": Array [
+                  34,
+                  40,
+                ],
+                "iconLayout": "islands#icon",
+                "zIndex": 1,
+              }
+            }
+            properties={
+              Object {
+                "balloonContent": "waypoint 4 very very very very very very very very very very very very very very very very very very very very very large text",
+                "waypointId": 4,
+              }
+            }
+          />
+          <Placemark
+            geometry={
+              Object {
+                "coordinates": Array [
+                  55.792354,
+                  37.6348678,
+                ],
+              }
+            }
+            key="5"
+            onGeometryChange={[MockFunction]}
+            options={
+              Object {
+                "draggable": true,
+                "iconColor": "#007bff",
+                "iconImageOffset": Array [
+                  -3,
+                  -42,
+                ],
+                "iconImageSize": Array [
+                  34,
+                  40,
+                ],
+                "iconLayout": "islands#icon",
+                "zIndex": 1,
+              }
+            }
+            properties={
+              Object {
+                "balloonContent": "waypoint 5 very very very very very very very large text here",
+                "waypointId": 5,
+              }
+            }
+          />
+          <Placemark
+            geometry={
+              Object {
+                "coordinates": Array [
+                  55.802354,
+                  37.8348678,
+                ],
+              }
+            }
+            key="6"
+            onGeometryChange={[MockFunction]}
+            options={
+              Object {
+                "draggable": true,
+                "iconColor": "#007bff",
+                "iconImageOffset": Array [
+                  -3,
+                  -42,
+                ],
+                "iconImageSize": Array [
+                  34,
+                  40,
+                ],
+                "iconLayout": "islands#icon",
+                "zIndex": 1,
+              }
+            }
+            properties={
+              Object {
+                "balloonContent": "waypoint 6 very large text here",
+                "waypointId": 6,
+              }
+            }
+          />
+          <Placemark
+            geometry={
+              Object {
+                "coordinates": Array [
+                  55.902354,
+                  37.7348678,
+                ],
+              }
+            }
+            key="7"
+            onGeometryChange={[MockFunction]}
+            options={
+              Object {
+                "draggable": true,
+                "iconColor": "#007bff",
+                "iconImageOffset": Array [
+                  -3,
+                  -42,
+                ],
+                "iconImageSize": Array [
+                  34,
+                  40,
+                ],
+                "iconLayout": "islands#icon",
+                "zIndex": 1,
+              }
+            }
+            properties={
+              Object {
+                "balloonContent": "waypoint 7 very large text here",
+                "waypointId": 7,
+              }
+            }
+          />
+          <GeoObject
+            geometry={
+              Object {
+                "coordinates": Array [
+                  Array [
+                    55.751678,
+                    37.573346,
+                  ],
+                  Array [
+                    55.768237,
+                    37.5931097,
+                  ],
+                  Array [
+                    55.770913456,
+                    37.5135454,
+                  ],
+                  Array [
+                    55.7811245,
+                    37.4930676,
+                  ],
+                  Array [
+                    55.792354,
+                    37.6348678,
+                  ],
+                  Array [
+                    55.802354,
+                    37.8348678,
+                  ],
+                  Array [
+                    55.902354,
+                    37.7348678,
+                  ],
+                ],
+                "type": "LineString",
+              }
+            }
+            instanceRef={[Function]}
+            options={
+              Object {
+                "strokeColor": "#dc3545",
+                "strokeWidth": 3,
+                "zIndex": 0,
+              }
+            }
+          />
+        </ResponsiveMap>
+      </YMaps>
+    </div>
+  </div>
+</div>
+`;

@@ -4,12 +4,6 @@ export const startDrag = function (evt, moveEvtCB, upEvtCB, CBArgs, limitXMin, l
   evt.preventDefault();
   const elementParameters = new ElementParameters(evt.currentTarget);
 
-  /*console.log(`MouseDown ScreenX: ${evt.screenX}`);
-  console.log(`MouseDown ScreenY: ${evt.screenY}`);
-  console.log(`MouseDown ClientX: ${evt.clientX}`);
-  console.log(`MouseDown ClientY: ${evt.clientY}`);
-  console.log('---------------------------------');*/
-
   // Element on top
   elementParameters.zIndex = '99';
 
@@ -37,11 +31,6 @@ export const startDrag = function (evt, moveEvtCB, upEvtCB, CBArgs, limitXMin, l
 
   // Обработчик события при перемещении мыши
   let onElementMousemove = function (moveEvt) {
-    /*console.log(`MouseMove ScreenX: ${moveEvt.screenX}`);
-    console.log(`MouseMove ScreenY: ${moveEvt.screenY}`);
-    console.log(`MouseMove ClientX: ${moveEvt.clientX}`);
-    console.log(`MouseMove ClientY: ${moveEvt.clientY}`);
-    console.log('---------------------------------');*/
     moveEvt.preventDefault();
     // Текущие координаты курсора
     let mouseCoords = {
@@ -149,6 +138,7 @@ export const clearStyleAfterDragging = function(nodes) {
     element.style.left = '';
     element.style.borderRadius = '';
     element.style.height = '';
+    element.style.width = '';
   });
 };
 

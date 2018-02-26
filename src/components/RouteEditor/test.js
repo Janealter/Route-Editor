@@ -14,7 +14,6 @@ describe("Route Editor", function () {
                  subscribersStorage={waypointUpdatingSubscribers}
     />
   );
-  //console.log(renderedComponent.debug());
 
   it('renders self and inner components', () => {
     expect(renderedComponent.instance()).toBeInstanceOf(RouteEditor);
@@ -88,9 +87,6 @@ describe("Route Editor", function () {
     ];
 
     expect(renderedComponent.state().data.waypoints).toEqual(waypointsAfterActions);
-
-    //console.log(renderedComponent.debug());
-    //console.dir(renderedComponent.state().data.waypoints);
   });
 });
 

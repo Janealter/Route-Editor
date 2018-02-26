@@ -1,0 +1,54 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`WaypointContainer the snapshot and the rendered component are the same 1`] = `
+<div
+  className="waypoints-container card"
+>
+  <div
+    className="card-header"
+  >
+    Waypoint list
+  </div>
+  <div
+    className="card-body"
+  >
+    <div
+      className="form-group"
+    >
+      <label>
+        New waypoint name
+      </label>
+      <TextField
+        maxLength="50"
+        minLength="3"
+        name="waypointName"
+        onKeyDown={[Function]}
+        placeholder="Press enter to add a waypoint"
+      />
+    </div>
+    <ListDraggable
+      elements={
+        Array [
+          Object {
+            "isRemovable": true,
+            "key": 1,
+            "text": "waypoint 1",
+          },
+          Object {
+            "isRemovable": true,
+            "key": 2,
+            "text": "waypoint 2",
+          },
+          Object {
+            "isRemovable": true,
+            "key": 3,
+            "text": "waypoint 3",
+          },
+        ]
+      }
+      onElementDelete={[Function]}
+      onElementSort={[Function]}
+    />
+  </div>
+</div>
+`;

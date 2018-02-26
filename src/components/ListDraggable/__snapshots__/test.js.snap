@@ -1,0 +1,149 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ListDraggable the snapshot and the rendered component are the same 1`] = `
+<ListDraggable
+  elements={
+    Array [
+      Object {
+        "isRemovable": true,
+        "key": 1,
+        "text": "element1",
+      },
+      Object {
+        "isRemovable": true,
+        "key": 2,
+        "text": "element2",
+      },
+      Object {
+        "isRemovable": true,
+        "key": 3,
+        "text": "element3",
+      },
+    ]
+  }
+  listElementTemplate={[Function]}
+  onElementDelete={
+    [MockFunction] {
+      "calls": Array [
+        Array [
+          2,
+        ],
+      ],
+    }
+  }
+  onElementSort={
+    [MockFunction] {
+      "calls": Array [
+        Array [
+          0,
+          2,
+        ],
+      ],
+    }
+  }
+>
+  <ul
+    className="list-group"
+  >
+    <ListElementClosable
+      id="le-0"
+      isClosable={true}
+      isHighlightable={true}
+      key="1"
+      onCloseButtonClick={[Function]}
+      onElementNodeCreate={[Function]}
+      onMouseDown={[Function]}
+      text="element1"
+    >
+      <li
+        className="list-element list-group-item"
+        id="le-0"
+        onMouseDown={[Function]}
+      >
+        <div
+          className="list-element__inner"
+        >
+          <span
+            className="list-element__text"
+          >
+            element1
+          </span>
+          <button
+            className="list-element__button btn btn-danger btn-sm float-right"
+            id="le-0"
+            onClick={[Function]}
+          >
+            x
+          </button>
+        </div>
+      </li>
+    </ListElementClosable>
+    <ListElementClosable
+      id="le-1"
+      isClosable={true}
+      isHighlightable={true}
+      key="2"
+      onCloseButtonClick={[Function]}
+      onElementNodeCreate={[Function]}
+      onMouseDown={[Function]}
+      text="element2"
+    >
+      <li
+        className="list-element list-group-item"
+        id="le-1"
+        onMouseDown={[Function]}
+      >
+        <div
+          className="list-element__inner"
+        >
+          <span
+            className="list-element__text"
+          >
+            element2
+          </span>
+          <button
+            className="list-element__button btn btn-danger btn-sm float-right"
+            id="le-1"
+            onClick={[Function]}
+          >
+            x
+          </button>
+        </div>
+      </li>
+    </ListElementClosable>
+    <ListElementClosable
+      id="le-2"
+      isClosable={true}
+      isHighlightable={true}
+      key="3"
+      onCloseButtonClick={[Function]}
+      onElementNodeCreate={[Function]}
+      onMouseDown={[Function]}
+      text="element3"
+    >
+      <li
+        className="list-element list-group-item"
+        id="le-2"
+        onMouseDown={[Function]}
+      >
+        <div
+          className="list-element__inner"
+        >
+          <span
+            className="list-element__text"
+          >
+            element3
+          </span>
+          <button
+            className="list-element__button btn btn-danger btn-sm float-right"
+            id="le-2"
+            onClick={[Function]}
+          >
+            x
+          </button>
+        </div>
+      </li>
+    </ListElementClosable>
+  </ul>
+</ListDraggable>
+`;
