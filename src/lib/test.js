@@ -56,14 +56,23 @@ describe('startDragListElement', function () {
       '35.55px',
     ];
     const draggedElementParameters = new ElementParameters(draggedElement);
+    // Эталонное состояние dragInfo перед передвижением элемента
+    const startDragInfo = {
+      draggableElementStartIndex: 1,
+      draggableElementIndex: 1,
+      draggableElementPreviousY: 0,
+      elementsRelativeY: [ -84.75, 0, 166.35, 180.725, 197.375 ],
+      nodes: listElementNodes
+    };
     // Эталонное состояние dragInfo после передвижения элемента
-    const dragInfo = {
+    const finalDragInfo = {
       draggableElementStartIndex: 1,
       draggableElementIndex: 3,
       draggableElementPreviousY: 29,
       elementsRelativeY: [ -84.75, -2, 12.375, 180.725, 197.375 ],
       nodes: listElementNodes
     };
+    const onElementMouseDownSpy = jest.fn();//(ep, di) => console.log(di);
     const onElementMouseUpSpy = jest.fn();
     elementHeights.forEach((height, index) => {
       listElementNodes[index].id = `le-${index}`;
@@ -75,14 +84,15 @@ describe('startDragListElement', function () {
     });
 
     draggedElement.addEventListener('mousedown', evt => {
-      startDragListElement(evt, listElementNodes, onElementMouseUpSpy);
+      startDragListElement(evt, listElementNodes, onElementMouseDownSpy, onElementMouseUpSpy);
     });
 
     dispatchEvent(listElementNodes[1], getCustomMouseEvent("mousedown"));
+    expect(onElementMouseDownSpy).toBeCalledWith(draggedElementParameters, startDragInfo);
     simulateMouseMove(1, 'down', 30);
     simulateMouseMove(191, 'up', 10);
     dispatchEvent(window.document.documentElement, getCustomMouseEvent("mouseup"));
-    expect(onElementMouseUpSpy).toBeCalledWith(draggedElementParameters, dragInfo);
+    expect(onElementMouseUpSpy).toBeCalledWith(draggedElementParameters, finalDragInfo);
   });
 
   it('the snapshot and the style are the same', () => {

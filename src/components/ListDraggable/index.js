@@ -8,8 +8,8 @@ class ListDraggable extends Component {
     super(props);
     this.handleElementMouseDown = this.handleElementMouseDown.bind(this);
     this.handleElementMouseUp = this.handleElementMouseUp.bind(this);
-    this.handleElementDelete = this.handleElementDelete.bind(this);
-    this.handleElementNodeCreate = this.handleElementNodeCreate.bind(this);
+    //this.handleElementDelete = this.handleElementDelete.bind(this);
+    //this.handleElementNodeCreate = this.handleElementNodeCreate.bind(this);
   }
 
   handleElementMouseDown(evt) {
@@ -20,13 +20,15 @@ class ListDraggable extends Component {
     }
 
     // В начале передвижения убираем округление углов, так красивее
-    this.elementNodes.forEach(elementNode => {
-      elementNode.style.borderRadius = '0';
-    });
+    const onElementMouseDown = (draggableElementParameters, dragInfo) => {
+      dragInfo.nodes.forEach(elementNode => {
+        elementNode.style.borderRadius = '0';
+      });
+    };
 
     // true четвертым аргументом - Очищаем стиль элемента, иначе у элемента останутся аттрибуты, установленые во время передвижения
     // и начальное позиционирование после обновления данных будет неправильным
-    startDragListElement(evt, null, this.handleElementMouseUp, true);
+    startDragListElement(evt, null, onElementMouseDown, this.handleElementMouseUp, true);
   }
 
   handleElementMouseUp(draggableElementParameters, dragInfo) {
@@ -35,7 +37,7 @@ class ListDraggable extends Component {
     }
   }
 
-  handleElementDelete(evt) {
+  /*handleElementDelete(evt) {
     evt.preventDefault();
     // Удаляем элемент из DOM
     const id = parseInt(evt.currentTarget.id.substring(3), 10);
@@ -44,21 +46,20 @@ class ListDraggable extends Component {
       const key = this.props.elements[id].key;
       this.props.onElementDelete(key);
     }
-  }
+  }*/
 
-  handleElementNodeCreate(listElementNode) {
+  /*handleElementNodeCreate(listElementNode) {
     if (listElementNode !== null) {
       this.elementNodes.push(listElementNode);
     }
-  }
+  }*/
 
-  elementNodes = [];
+  //elementNodes = [];
 
   render() {
     const ListElementTemplate = this.props.listElementTemplate || ListElementClosable;
     const elements = this.props.elements.map((element, index) =>
-      <ListElementTemplate onElementNodeCreate={this.handleElementNodeCreate}
-                           id={'le-' + index} key={element.key} text={element.text}
+      <ListElementTemplate id={'le-' + index} key={element.key} text={element.text}
                            onMouseDown={this.handleElementMouseDown}
                            onCloseButtonClick={this.handleElementDelete}
                            isClosable={element.isRemovable}

@@ -71,7 +71,9 @@ export const startDrag = function (evt, moveEvtCB, upEvtCB, CBArgs, limitXMin, l
 
 // ID передвигаемых элементов должны состоять из любых 3-х символов и числа после них
 // Число должно указывать на индекс элемента в массиве nodes
-export const startDragListElement = function(evt, nodes, mouseUpCB, isClearStyleAfterDragging) {
+// mouseDownCB - будет вызван сразу после подготовки dragInfo
+// mouseUpCB - будет вызван после всех действий
+export const startDragListElement = function(evt, nodes, mouseDownCB, mouseUpCB, isClearStyleAfterDragging) {
   const draggableElementParameters = new ElementParameters(evt.currentTarget);
   const draggableIndex = parseInt(draggableElementParameters.object.id.substring(3), 10);
 
@@ -87,6 +89,10 @@ export const startDragListElement = function(evt, nodes, mouseUpCB, isClearStyle
     elementsRelativeY: getRelativeY(nodes, draggableIndex),
     nodes: nodes
   };
+
+  if (typeof mouseDownCB === 'function') {
+    mouseDownCB(draggableElementParameters, dragInfo);
+  }
 
   const limitXMin = 0;
   const limitXMax = draggableElementParameters.width;
