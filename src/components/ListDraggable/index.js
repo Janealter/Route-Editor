@@ -24,7 +24,7 @@ class ListDraggable extends Component {
       elementNode.style.borderRadius = '0';
     });
 
-    startDragListElement(evt, this.elementNodes, this.handleElementMouseUp);
+    startDragListElement(evt, null, this.handleElementMouseUp);
   }
 
   handleElementMouseUp(draggableElementParameters, dragInfo) {

@@ -75,6 +75,11 @@ export const startDragListElement = function(evt, nodes, mouseUpCB) {
   const draggableElementParameters = new ElementParameters(evt.currentTarget);
   const draggableIndex = parseInt(draggableElementParameters.object.id.substring(3), 10);
 
+  // Ищем ноды соседние ноды, если не передан их список
+  if (!nodes) {
+    nodes = [].map.call(evt.currentTarget.parentNode.children, node => node);
+  }
+
   const dragInfo = {
     draggableElementStartIndex: draggableIndex,
     draggableElementIndex: draggableIndex,

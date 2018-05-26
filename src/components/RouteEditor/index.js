@@ -121,7 +121,7 @@ class RouteEditor extends Component {
 }
 
 RouteEditor.propTypes = {
-  waypoints: PropTypes.array,
+  waypoints: PropTypes.array.isRequired,
   title: PropTypes.string,
   subscribersStorage: PropTypes.instanceOf(Set)
 };
