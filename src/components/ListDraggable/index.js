@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import ListElementClosable from './ListElementClosable';
-import { clearStyleAfterDragging, startDragListElement } from "../../lib/drag";
+import { startDragListElement } from "../../lib/drag";
 
 class ListDraggable extends Component {
   constructor(props) {
@@ -24,14 +24,12 @@ class ListDraggable extends Component {
       elementNode.style.borderRadius = '0';
     });
 
+    // true четвертым аргументом - Очищаем стиль элемента, иначе у элемента останутся аттрибуты, установленые во время передвижения
+    // и начальное позиционирование после обновления данных будет неправильным
     startDragListElement(evt, null, this.handleElementMouseUp, true);
   }
 
   handleElementMouseUp(draggableElementParameters, dragInfo) {
-    // Очищаем стиль элемента, иначе у элемента останутся аттрибуты, установленые во время передвижения
-    // и начальное позиционирование после обновления данных будет неправильным
-    //clearStyleAfterDragging(this.elementNodes);
-
     if (typeof this.props.onElementSort === 'function') {
       this.props.onElementSort(dragInfo.draggableElementStartIndex, dragInfo.draggableElementIndex);
     }

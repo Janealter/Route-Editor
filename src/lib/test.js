@@ -1,4 +1,5 @@
-import { startDrag, startDragListElement, clearStyleAfterDragging } from './drag';
+import {startDrag, startDragListElement, clearStyleAfterDragging, getRelativeY} from './drag';
+import ElementParameters from './element-parameters';
 import { dispatchEvent, getCustomMouseEvent, simulateMouseMove } from "./custom-mouse-event";
 
 const createListAndGetListElementNodes = function() {
@@ -42,6 +43,7 @@ describe('startDrag', function () {
 
 describe('startDragListElement', function () {
   const listElementNodes = createListAndGetListElementNodes();
+  const draggedElement = listElementNodes[1];
 
   it('is work fine', () => {
     // Указываем высоту элементов, координаты и бордеры вручную,
@@ -53,6 +55,16 @@ describe('startDragListElement', function () {
       '17.65px',
       '35.55px',
     ];
+    const draggedElementParameters = new ElementParameters(draggedElement);
+    // Эталонное состояние dragInfo после передвижения элемента
+    const dragInfo = {
+      draggableElementStartIndex: 1,
+      draggableElementIndex: 3,
+      draggableElementPreviousY: 29,
+      elementsRelativeY: [ -84.75, -2, 12.375, 180.725, 197.375 ],
+      nodes: listElementNodes
+    };
+    const onElementMouseUpSpy = jest.fn();
     elementHeights.forEach((height, index) => {
       listElementNodes[index].id = `le-${index}`;
       listElementNodes[index].style.top = '0px';
@@ -62,14 +74,15 @@ describe('startDragListElement', function () {
       listElementNodes[index].style.border = '1px';
     });
 
-    listElementNodes[1].addEventListener('mousedown', evt => {
-      startDragListElement(evt, listElementNodes);
+    draggedElement.addEventListener('mousedown', evt => {
+      startDragListElement(evt, listElementNodes, onElementMouseUpSpy);
     });
 
     dispatchEvent(listElementNodes[1], getCustomMouseEvent("mousedown"));
     simulateMouseMove(1, 'down', 30);
     simulateMouseMove(191, 'up', 10);
     dispatchEvent(window.document.documentElement, getCustomMouseEvent("mouseup"));
+    expect(onElementMouseUpSpy).toBeCalledWith(draggedElementParameters, dragInfo);
   });
 
   it('the snapshot and the style are the same', () => {
