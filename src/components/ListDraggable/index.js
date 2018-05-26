@@ -24,13 +24,13 @@ class ListDraggable extends Component {
       elementNode.style.borderRadius = '0';
     });
 
-    startDragListElement(evt, null, this.handleElementMouseUp);
+    startDragListElement(evt, null, this.handleElementMouseUp, true);
   }
 
   handleElementMouseUp(draggableElementParameters, dragInfo) {
     // Очищаем стиль элемента, иначе у элемента останутся аттрибуты, установленые во время передвижения
     // и начальное позиционирование после обновления данных будет неправильным
-    clearStyleAfterDragging(this.elementNodes);
+    //clearStyleAfterDragging(this.elementNodes);
 
     if (typeof this.props.onElementSort === 'function') {
       this.props.onElementSort(dragInfo.draggableElementStartIndex, dragInfo.draggableElementIndex);
