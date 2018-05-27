@@ -1,23 +1,23 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import toJson from 'enzyme-to-json';
-import MapContainer from "./index";
+import RouteMap from "./index";
 import waypoints from '../../waypoints.json';
 
-describe('MapContainer', function () {
+describe('RouteMap', function () {
   const mapInitialState = { center: [50, 50], zoom: 10 };
   const onMapNodeCreateSpy = jest.fn();
   const onPlacemarkGeometryChangeSpy = jest.fn();
   const renderedComponent = shallow(
-    <MapContainer mapInitialState={mapInitialState}
-                  waypoints={waypoints}
-                  onMapNodeCreate={onMapNodeCreateSpy}
-                  onPlacemarkGeometryChange={onPlacemarkGeometryChangeSpy}
+    <RouteMap mapInitialState={mapInitialState}
+              waypoints={waypoints}
+              onMapNodeCreate={onMapNodeCreateSpy}
+              onPlacemarkGeometryChange={onPlacemarkGeometryChangeSpy}
     />
   );
 
   it('renders self', () => {
-    expect(renderedComponent.instance()).toBeInstanceOf(MapContainer);
+    expect(renderedComponent.instance()).toBeInstanceOf(RouteMap);
   });
 
   it('changes state when receiving changed props', () => {

@@ -1,14 +1,14 @@
 import React from 'react';
 import { mount } from 'enzyme';
-import ListElementClosable from './index';
-import { dispatchEvent, getCustomMouseEvent } from "../../../lib/custom-mouse-event";
+import ElementClosable from './index';
+import { dispatchEvent, getCustomMouseEvent } from "../../lib/custom-mouse-event";
 
 describe("ListElement", function() {
   const onMouseDownSpy = jest.fn();
   const onCloseButtonClickSpy = jest.fn();
   const onElementNodeCreateSpy = jest.fn();
   const renderedComponent = mount(
-    <ListElementClosable id="le-0"
+    <ElementClosable id="le-0"
                          text="testListElement"
                          onMouseDown={onMouseDownSpy}
                          onCloseButtonClick={onCloseButtonClickSpy}
@@ -20,7 +20,7 @@ describe("ListElement", function() {
   it('renders without crashing', () => {
     const liWrapper = renderedComponent.find('li');
     const buttonWrapper = renderedComponent.find('button');
-    expect(renderedComponent.instance()).toBeInstanceOf(ListElementClosable);
+    expect(renderedComponent.instance()).toBeInstanceOf(ElementClosable);
     expect(renderedComponent.props().onMouseDown).toEqual(onMouseDownSpy);
     expect(renderedComponent.props().onCloseButtonClick).toEqual(onCloseButtonClickSpy);
     expect(renderedComponent.props().onElementNodeCreate).toEqual(onElementNodeCreateSpy);

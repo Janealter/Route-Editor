@@ -74,7 +74,7 @@ describe("WaypointContainer", function() {
     expect(renderedComponent.instance().props.onWaypointDelete).toEqual(onWaypointDeleteSpy);
     expect(renderedComponent.find('TextField').props().onKeyDown).toEqual(renderedComponent.instance().handleWaypointAdd);
     expect(renderedComponent.find('ListDraggable').props().elements).toEqual(elements);
-    expect(renderedComponent.find('ListDraggable').props().onElementSort).toEqual(renderedComponent.instance().handleWaypointSort);
+    expect(renderedComponent.find('ListDraggable').props().onElementMove).toEqual(renderedComponent.instance().handleWaypointSort);
     expect(renderedComponent.find('ListDraggable').props().onElementDelete).toEqual(renderedComponent.instance().handleWaypointDelete);
   });
 

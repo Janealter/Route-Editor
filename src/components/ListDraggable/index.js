@@ -1,18 +1,26 @@
 import React, { Component } from 'react';
+import autoBind from 'react-autobind';
 import PropTypes from 'prop-types';
-import ListElementClosable from './ListElementClosable';
 import { startDragListElement } from "../../lib/drag";
 
 class ListDraggable extends Component {
   constructor(props) {
     super(props);
-    this.handleElementMouseDown = this.handleElementMouseDown.bind(this);
-    this.handleElementMouseUp = this.handleElementMouseUp.bind(this);
-    //this.handleElementDelete = this.handleElementDelete.bind(this);
-    //this.handleElementNodeCreate = this.handleElementNodeCreate.bind(this);
+    autoBind(this);
+    this.state = {
+      isDrag: false
+    };
   }
 
   handleElementMouseDown(evt) {
+    this.draggedElement = evt.currentTarget;
+
+    // Добавляем listener отпускания кнопки мыши на все окно, чтобы состояние компонента менялось
+    // при отпускании кнопки в любом месте, а не только над элементом
+    window.addEventListener('mouseup', this.handleWindowMouseUp);
+    //this.setState({ isDrag: true });
+    this.draggedElement.classList.add('list-element_highlighted');
+
     // Не выполнять передвижение, если была нажата кнопка или выделен текст
     // || evt.target.localName === 'span'
     if (evt.target.localName === 'button') {
@@ -31,52 +39,52 @@ class ListDraggable extends Component {
     startDragListElement(evt, null, onElementMouseDown, this.handleElementMouseUp, true);
   }
 
+  handleWindowMouseUp() {
+    window.removeEventListener('mouseup', this.handleWindowMouseUp);
+    //this.setState({ isDrag: false });
+    this.draggedElement.classList.remove('list-element_highlighted');
+  }
+
   handleElementMouseUp(draggableElementParameters, dragInfo) {
     if (typeof this.props.onElementSort === 'function') {
       this.props.onElementSort(dragInfo.draggableElementStartIndex, dragInfo.draggableElementIndex);
     }
   }
 
-  /*handleElementDelete(evt) {
-    evt.preventDefault();
-    // Удаляем элемент из DOM
-    const id = parseInt(evt.currentTarget.id.substring(3), 10);
-    this.elementNodes.splice(id, 1);
-    if (typeof this.props.onElementDelete === 'function') {
-      const key = this.props.elements[id].key;
-      this.props.onElementDelete(key);
+  renderRowFromParent (index) {
+    if (typeof this.props.renderRow === 'function') {
+      return (this.props.renderRow(index));
     }
-  }*/
+  }
 
-  /*handleElementNodeCreate(listElementNode) {
-    if (listElementNode !== null) {
-      this.elementNodes.push(listElementNode);
-    }
-  }*/
+  renderRows() {
+    return (
+      this.props.elementsIDArray.map((id, index) =>
+        <li id={'le-' + index}
+            className={`list-element list-group-item${this.state.isDrag ? ' list-element_highlighted' : ''}`}
+            key={id}
+            onMouseDown={this.handleElementMouseDown}
 
-  //elementNodes = [];
+        >
+          {this.renderRowFromParent(index)}
+        </li>
+    ));
+  }
+
+  draggedElement = null;
 
   render() {
-    const ListElementTemplate = this.props.listElementTemplate || ListElementClosable;
-    const elements = this.props.elements.map((element, index) =>
-      <ListElementTemplate id={'le-' + index} key={element.key} text={element.text}
-                           onMouseDown={this.handleElementMouseDown}
-                           onCloseButtonClick={this.handleElementDelete}
-                           isClosable={element.isRemovable}
-                           isHighlightable
-      />);
     return (
       <ul className="list-group">
-        {elements}
+        {this.renderRows()}
       </ul>
     );
   }
 }
 
 ListDraggable.propTypes = {
-  elements: PropTypes.arrayOf(PropTypes.object).isRequired,
-  listElementTemplate: PropTypes.func,
-  onElementDelete: PropTypes.func,
+  elementsIDArray: PropTypes.arrayOf(PropTypes.number).isRequired,
+  renderRow: PropTypes.func,
   onElementSort: PropTypes.func
 };
 

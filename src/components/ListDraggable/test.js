@@ -1,6 +1,6 @@
 import React from 'react';
 import { mount } from 'enzyme';
-import ListElementClosable from "./ListElementClosable";
+import ListElementClosable from "../ElementClosable";
 import ListDraggable from "./index";
 import { dispatchEvent, getCustomMouseEvent, simulateMouseMove } from "../../lib/custom-mouse-event";
 import toJson from "enzyme-to-json";
@@ -37,7 +37,7 @@ describe("ListDraggable", function() {
     expect(renderedComponent.props().elements).toEqual(elements);
     expect(renderedComponent.props().listElementTemplate).toEqual(ListElementClosable);
     expect(renderedComponent.props().onElementDelete).toEqual(onElementDeleteSpy);
-    expect(renderedComponent.props().onElementSort).toEqual(onElementSortSpy);
+    expect(renderedComponent.props().onElementMove).toEqual(onElementSortSpy);
     elements.forEach((element, index) => {
       expect(renderedComponent.find(`ListElementClosable#le-${index}`).instance()).toBeInstanceOf(ListElementClosable);
       expect(renderedComponent.find(`ListElementClosable#le-${index}`).props().onElementNodeCreate).toEqual(renderedComponent.instance().handleElementNodeCreate);
