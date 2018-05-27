@@ -4,7 +4,11 @@ import {YMaps, GeoObject, Placemark} from 'react-yandex-maps';
 import MapResponsive from '../MapResponsive';
 import 'bootstrap/dist/css/bootstrap.css';
 import PropTypes from "prop-types";
-import * as waypointSelectors from "../../store/waypoints/reducer";
+
+/**
+ * Используется свой собственный стейт с координатами вместо Redux,
+ * иначе карта тормозит при перетаскивании меток и перерисовке линий маршрута.
+ */
 
 class RouteMap extends Component {
   constructor (props) {
@@ -17,20 +21,20 @@ class RouteMap extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
+    let newPlacemarksCoordinateArray = nextProps.placemarks.map(pm => pm.coordinates);
+    const setNewPlacemarksCoordinateArray = () => this.setState({placemarksCoordinateArray: newPlacemarksCoordinateArray});
+
     if (nextProps.placemarks.length !== this.state.placemarksCoordinateArray.length) {
-      this.setState({placemarksCoordinateArray: nextProps.placemarks.map(placemark => placemark.coordinates)});
+      setNewPlacemarksCoordinateArray();
+    } else if (newPlacemarksCoordinateArray.join(',') !== this.state.placemarksCoordinateArray.join(',')) {
+      setNewPlacemarksCoordinateArray();
     }
-    /*if (nextProps.mapInitialState.center.join(',') !== this.state.mapInitialState.center.join(',') ||
-      nextProps.mapInitialState.zoom !== this.state.mapInitialState.zoom) {
-      this.setState({mapInitialState: nextProps.mapInitialState});
-    }*/
   }
 
+  // По завершению передвижения метки отправляем новые координаты в Redux (через родителя)
   handlePlacemarkDragEnd(evt) {
-    //console.dir(evt);
     const waypointId = evt.get('target').properties.get('waypointId');
     const newCoordinates = evt.originalEvent.target.geometry._coordinates;
-    //console.dir(waypointId + ' ' + newCoordinates);
 
     if (typeof this.props.onPlacemarkDragEnd === 'function') {
       this.props.onPlacemarkDragEnd(waypointId, newCoordinates);
@@ -51,11 +55,8 @@ class RouteMap extends Component {
       return false;
     });
 
+    // Ререндерим линию маршрута, посредством обновления стейта
     this.setState({placemarksCoordinateArray: newPlacemarksCoordinateArray});
-
-    /*if (typeof this.props.onPlacemarkDragEnd === 'function') {
-      this.props.onPlacemarkDragEnd(waypointId, newCoordinates);
-    }*/
   }
 
   render() {

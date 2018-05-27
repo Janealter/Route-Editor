@@ -7,9 +7,6 @@ class ListDraggable extends Component {
   constructor(props) {
     super(props);
     autoBind(this);
-    this.state = {
-      isDrag: false
-    };
   }
 
   handleElementMouseDown(evt) {
@@ -18,7 +15,6 @@ class ListDraggable extends Component {
     // Добавляем listener отпускания кнопки мыши на все окно, чтобы состояние компонента менялось
     // при отпускании кнопки в любом месте, а не только над элементом
     window.addEventListener('mouseup', this.handleWindowMouseUp);
-    //this.setState({ isDrag: true });
     this.draggedElement.classList.add('list-element_highlighted');
 
     // Не выполнять передвижение, если была нажата кнопка или выделен текст
@@ -41,7 +37,6 @@ class ListDraggable extends Component {
 
   handleWindowMouseUp() {
     window.removeEventListener('mouseup', this.handleWindowMouseUp);
-    //this.setState({ isDrag: false });
     this.draggedElement.classList.remove('list-element_highlighted');
   }
 
@@ -61,7 +56,7 @@ class ListDraggable extends Component {
     return (
       this.props.elementsIDArray.map((id, index) =>
         <li id={'le-' + index}
-            className={`list-element list-group-item${this.state.isDrag ? ' list-element_highlighted' : ''}`}
+            className={'list-element list-group-item'}
             key={id}
             onMouseDown={this.handleElementMouseDown}
 

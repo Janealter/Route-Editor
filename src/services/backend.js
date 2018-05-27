@@ -1,14 +1,18 @@
 import waypoints from '../waypoints.json';
 
+/**
+ * Backend emulator
+ */
+
 class Backend {
-  getWaypoints() {
+  static getWaypoints() {
     return waypoints;
   }
 
-  addWaypoint(waypoint) {
+  static addWaypoint(waypoint) {
     const id = Math.random();
     return id;
   }
 }
 
-export default new Backend();
+export default Backend;

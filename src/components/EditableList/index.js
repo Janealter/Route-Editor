@@ -19,7 +19,6 @@ class EditableList extends Component {
 
   handleElementDelete(id) {
     if (typeof this.props.onElementDelete === 'function') {
-      // key == id
       this.props.onElementDelete(id);
     }
   }
